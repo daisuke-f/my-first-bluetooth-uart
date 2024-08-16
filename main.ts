@@ -15,7 +15,8 @@ function showDisconnected () {
     basic.clearScreen()
 }
 bluetooth.onUartDataReceived(serial.delimiters(Delimiters.Fullstop), function () {
-    bluetooth.uartWriteLine("" + input.temperature() + "," + pins.analogReadPin(AnalogPin.P0) + "," + pins.analogReadPin(AnalogPin.P3))
+    count += 1
+    bluetooth.uartWriteLine("" + count + "," + input.temperature() + "," + pins.analogReadPin(AnalogPin.P0) + "," + pins.analogReadPin(AnalogPin.P3))
     basic.showIcon(IconNames.Happy)
     basic.pause(2000)
     basic.clearScreen()
@@ -39,6 +40,8 @@ function showConnected () {
     basic.clearScreen()
 }
 let mV = 0
+let count = 0
 let connected = 0
 bluetooth.startUartService()
 connected = 0
+count = 0
